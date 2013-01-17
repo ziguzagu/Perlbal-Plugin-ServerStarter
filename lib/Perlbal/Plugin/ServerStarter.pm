@@ -138,7 +138,7 @@ sub die_gracefully {
 
 =head1 NAME
 
-Perlbal::Plugin::ServerStarter - Server::Starter support for Perlbal
+Perlbal::Plugin::ServerStarter - Perlbal plugin for Server::Starter support
 
 =head1 SYNOPSIS
 
