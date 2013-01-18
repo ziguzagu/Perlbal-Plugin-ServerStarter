@@ -158,7 +158,7 @@ Perlbal::Plugin::ServerStarter - Perlbal plugin for Server::Starter support
 
 =head1 DESCRIPTION
 
-Perlbal::Plugin::ServerStarter is a plugin to be able to run perlbal via I<start_server> command of L<Server::Starter>.
+Perlbal::Plugin::ServerStarter is a plugin to be able to run perlbal via I<start_server> command of L<Server::Starter>. Therefor, the hot deployment of upgrading perlbal, plugins and configration changes is available by Perlbal!!
 
 =head1 COMMANDS
 
