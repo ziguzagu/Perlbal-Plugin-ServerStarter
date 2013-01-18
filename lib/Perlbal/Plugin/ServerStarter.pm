@@ -172,13 +172,19 @@ Set port number listened by I<start_server>. Under using this plugin, all of 'SE
 
 =head1 SEE ALSO
 
-L<Server::Starter>
+=over
 
-L<Perlbal>
+=item L<Server::Starter>
+
+=item L<Perlbal>
+
+=back
 
 =head1 AUTHOR
 
 Hiroshi Sakai E<lt>ziguzagu@cpan.orgE<gt>
+
+Reporisoty available on github: L<https://github.com/ziguzagu/Perlbal-Plugin-ServerStarter/>
 
 =head1 LICENSE
 
