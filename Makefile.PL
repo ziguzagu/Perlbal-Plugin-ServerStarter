@@ -1,15 +1,18 @@
-use ExtUtils::MakeMaker;
+use inc::Module::Install;
+# metadataes
+name 'Perlbal-Plugin-ServerStarter';
+all_from 'lib/Perlbal/Plugin/ServerStarter.pm';
+readme_from 'lib/Perlbal/Plugin/ServerStarter.pm';
+install_script 'start_perlbal';
+# dependencies
+requires 'Perlbal';
+requires 'Server::Starter';
+# tests
+test_requires 'Test::More', 0.96;
+test_requires 'Test::TCP';
+tests 't/*.t';
+author_tests 'xt';
+# misc
+auto_include;
 
-WriteMakefile(
-    NAME           => 'Perlbal::Plugin::ServerStarter',
-    AUTHOR         => 'Hiroshi Sakai <ziguzagu@cpan.org>',
-    LICENSE        => 'perl',
-    VERSION_FROM   => 'lib/Perlbal/Plugin/ServerStarter.pm',
-    ABSTRACT_FROM  => 'lib/Perlbal/Plugin/ServerStarter.pm',
-    PREREQ_PM      => { 'Server::Starter' => 0 },
-    BUILD_REQUIRES => {
-        'Test::TCP'  => 0,
-        'Test::More' => 0.96,
-    },
-    EXE_FILES => [qw( start_perlbal )],
-);
+WriteAll;
