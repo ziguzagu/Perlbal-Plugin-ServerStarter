@@ -1,9 +1,5 @@
 use ExtUtils::MakeMaker;
 
-my $preop =
-    'perldoc -uT $(VERSION_FROM) | tee $(DISTVNAME)/README.pod > README.pod;' .
-    'pod2text README.pod | tee $(DISTVNAME)/README > README';
-
 WriteMakefile(
     NAME           => 'Perlbal::Plugin::ServerStarter',
     AUTHOR         => 'Hiroshi Sakai <ziguzagu@cpan.org>',
@@ -16,7 +12,4 @@ WriteMakefile(
         'Test::More' => 0.96,
     },
     EXE_FILES => [qw( start_perlbal )],
-    dist      => { PREOP => $preop, },
-    clean     => { FILES => 'README.pod' },
 );
-
