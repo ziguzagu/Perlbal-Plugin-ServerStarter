@@ -21,7 +21,7 @@ sub load {
 
             my %port_to_fd = %{ server_ports() };
             my $svc        = Perlbal->service($mc->{ctx}{last_created});
-            my $listener   = SocketListener->new($port_to_fd{$port}, $svc);
+            my $listener   = Perlbal::SocketListener->new($port_to_fd{$port}, $svc);
             $svc->{listener} = $listener;
 
             Perlbal::log(debug => $listener->as_string) if Perlbal::DEBUG;
@@ -43,7 +43,8 @@ sub unregister { 1 }
 sub register   { 1 }
 
 
-package SocketListener;
+package # hide from CPAN
+    Perlbal::SocketListener;
 
 use base 'Perlbal::Socket';
 use fields qw( service port_fd );
@@ -53,7 +54,7 @@ use IO::Socket::INET;
 use Socket qw( SOL_SOCKET SO_SNDBUF );
 
 sub new {
-    my SocketListener $self = shift;
+    my Perlbal::SocketListener $self = shift;
     my ($fd, $service, $opts) = @_;
 
     $self = fields::new($self) unless ref $self;
@@ -74,7 +75,7 @@ sub new {
 }
 
 sub event_read {
-    my SocketListener $self = shift;
+    my Perlbal::SocketListener $self = shift;
 
     while (my ($psock, $peeraddr) = $self->{sock}->accept) {
         if ($psock->blocking) {
@@ -90,7 +91,7 @@ sub event_read {
 ## following methods are almost copied from Perlbal::TCPListener (v1.80)
 
 sub class_new_socket {
-    my SocketListener $self = shift;
+    my Perlbal::SocketListener $self = shift;
     my $psock = shift;
 
     my $service_role = $self->{service}->role;
@@ -112,7 +113,7 @@ sub class_new_socket {
 }
 
 sub as_string {
-    my SocketListener $self = shift;
+    my Perlbal::SocketListener $self = shift;
     my $ret = $self->SUPER::as_string;
     my Perlbal::Service $svc = $self->{service};
     $ret .= ": listening on FD:$self->{port_fd} via 'start_server' for service '$svc->{name}'";
@@ -120,7 +121,7 @@ sub as_string {
 }
 
 sub as_string_html {
-    my SocketListener $self = shift;
+    my Perlbal::SocketListener $self = shift;
     my $ret = $self->SUPER::as_string_html;
     my Perlbal::Service $svc = $self->{service};
     $ret .= ": listening on FD:$self->{port_fd} via <em>start_server</em> for service <b>$svc->{name}</b>";
