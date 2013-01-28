@@ -35,18 +35,27 @@ CREATE SERVICE web
   SET docroot = $Bin/htdocs
 ENABLE web
 CONF
-        exec 'start_server', '--port', $port, '--', 'perlbal', '-c', $conf_fh->filename;
+        exec 'start_server', '--port', $port, '--interval', '3',
+             '--', 'perlbal', '-c', $conf_fh->filename;
     },
     client => sub {
-        my $port = shift;
+        my ($port, $pid) = @_;
 
-        subtest 'listen by selector role' => sub {
-            my $ua = Perlbal::Test::ua();
-            my $res = $ua->get("http://localhost:$port/");
-            ok $res;
-            ok $res->is_success;
-            like $res->content, qr{this is index};
-        };
+        my $ua  = Perlbal::Test::ua();
+        my $res = $ua->get("http://localhost:$port/");
+        ok $res;
+        ok $res->is_success;
+        like $res->content, qr{this is index};
+
+        ## restart with sending HUP to start_server
+        kill 'HUP', $pid;
+        sleep 5;
+
+        ## simple GET again
+        $res = $ua->get("http://localhost:$port/");
+        ok $res;
+        ok $res->is_success;
+        like $res->content, qr{this is index};
     },
 );
 
