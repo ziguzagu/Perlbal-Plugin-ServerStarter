@@ -36,7 +36,8 @@ CREATE SERVICE mgmt
   LISTEN = $mgmt_port
 ENABLE mgmt
 CONF
-        exec 'start_server', '--port', $port, '--port', $mgmt_port, '--', 'perlbal', '-c', $conf_fh->filename;
+        exec 'start_server', '--port', $port, '--port', $mgmt_port, '--interval', '3',
+             '--', 'perlbal', '-c', $conf_fh->filename;
     },
     client => sub {
         my ($port, $pid) = @_;
@@ -63,7 +64,7 @@ CONF
 
         ## restart with sending HUP to start_server
         kill 'HUP', $pid;
-        sleep 2;
+        sleep 5;
 
         ## simple GET again
         $res = $ua->get("http://localhost:$port/");
