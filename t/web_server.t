@@ -8,6 +8,13 @@ use File::Temp ();
 use Perlbal::Test ();
 use IO::Socket;
 
+## make sure commands are available
+for my $cmd (qw( start_server perlbal )) {
+    chomp(my $bin = `which $cmd`);
+    plan skip_all => "$cmd not found in PATH"
+        unless $bin && -x $bin;
+}
+
 my $mgmt_port = '127.0.0.1:' . Perlbal::Test::new_port();
 
 test_tcp(

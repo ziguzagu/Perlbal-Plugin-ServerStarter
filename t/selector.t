@@ -7,6 +7,13 @@ use Test::TCP;
 use File::Temp ();
 use Perlbal::Test ();
 
+## make sure commands are available
+for my $cmd (qw( start_server perlbal )) {
+    chomp(my $bin = `which $cmd`);
+    plan skip_all => "$cmd not found in PATH"
+        unless $bin && -x $bin;
+}
+
 test_tcp(
     server => sub {
         my $port = shift;
