@@ -13,4 +13,5 @@
 \.cvsignore
 \.gitignore
 \.shipit
+\.travis.yml
 MYMETA
