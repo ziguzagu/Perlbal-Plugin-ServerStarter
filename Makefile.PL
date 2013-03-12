@@ -3,6 +3,8 @@ use inc::Module::Install;
 name 'Perlbal-Plugin-ServerStarter';
 all_from 'lib/Perlbal/Plugin/ServerStarter.pm';
 readme_from 'lib/Perlbal/Plugin/ServerStarter.pm';
+authority 'ZIGUZAGU';
+
 install_script 'start_perlbal';
 
 tests 't/*.t';
