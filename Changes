@@ -1,5 +1,5 @@
 0.03  Tue Mar 12 14:45:00 JST 2013
-        - cpanfile support
+        - just repackage. no changes.
 
 0.02  Mon Jan 28 23:52:00 JST 2013
         - fixed test (RT:82946 and CPAN Testers reports)
