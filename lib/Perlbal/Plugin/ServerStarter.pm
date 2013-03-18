@@ -185,7 +185,7 @@ Set port number listened by I<start_server>. Under using this plugin, all of 'SE
 
 Hiroshi Sakai E<lt>ziguzagu@cpan.orgE<gt>
 
-Reporisoty available on github: L<https://github.com/ziguzagu/Perlbal-Plugin-ServerStarter/>
+Repository available on github: L<https://github.com/ziguzagu/Perlbal-Plugin-ServerStarter/>
 
 =head1 LICENSE
 
