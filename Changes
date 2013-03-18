@@ -1,3 +1,6 @@
+0.04  Mon Mar 18 14:30:00 JST 2013
+        - fixed typo (but works without any problems...) in start_perlbal command.
+
 0.03  Tue Mar 12 14:45:00 JST 2013
         - just repackage. no changes.
 

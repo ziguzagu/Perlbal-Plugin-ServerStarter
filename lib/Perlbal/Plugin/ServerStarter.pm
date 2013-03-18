@@ -3,7 +3,7 @@ package Perlbal::Plugin::ServerStarter;
 use strict;
 use warnings;
 
-our $VERSION = '0.03';
+our $VERSION = '0.04';
 
 use Perlbal;
 use Server::Starter qw( server_ports );
