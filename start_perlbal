@@ -16,7 +16,7 @@ my @ports;
     open my $fh, '<', $opt{config}
         or die "can't open $opt{config}: $!\n";
     my $conf = do { local $/; <$fh> };
-    close $conf;
+    close $fh;
 
     $conf =~ s{^\s*listen\s*=\s*((?:.*:)?\d+)}{push(@ports, $1) && ''}iemg;
     die "no ports found in $opt{config}\n"
